@@ -20,8 +20,7 @@ socket.getaddrinfo('localhost', 8080)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfA6O6donzWlSihBXox7C0sKR6b'
 
-load_dotenv("environment.env")
-
+# load_dotenv(".env")#
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -70,7 +69,7 @@ def admin_only(function):
 def send_message(data):
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login(user="musaturquoise@gmail.com", password=os.getenv("EMAIL_PASSWORD"))
+        connection.login(user="musaturquoise@gmail.com", password=os.environ.get("EMAIL_PASSWORD"))
         connection.sendmail(from_addr=f"musaturquoise@gmail.com",
                             to_addrs=f"muwaheedmustapha@gmail.com",
                             msg=f"Subject: Message from blog\n\n"
